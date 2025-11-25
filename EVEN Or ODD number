@@ -1,0 +1,47 @@
+ .MODEL SMALL
+ .STACK 100H
+
+ .DATA
+    msg1 DB 10,13,'Enter a number$'
+    msg2 DB 10,13,'This is even number$'
+    msg3 DB 10,13,'This is not an even number$'
+
+
+
+   DISPLAY MACRO MSG
+    MOV AH,9
+    LEA DX,MSG
+    INT 21H
+    ENDM 
+
+  .CODE   
+
+    MAIN PROC
+    
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    DISPLAY msg1
+    
+    MOV AH,1
+    INT 21H
+    MOV AH,0
+    
+    MOV DL,2
+    DIV DL
+    CMP AH,0
+    JNE ODD
+    
+    EVEN:
+    DISPLAY msg2
+    JMP DONE
+    
+    ODD:
+    DISPLAY msg3
+    
+    DONE:
+    MOV AH,4CH
+    INT 21H   
+
+ main endp
+endp main
