@@ -1,0 +1,41 @@
+;upper to lower case conversion
+.model small
+.stack 100h
+.data      
+ 
+ MSG1 DB 'Enter a Upper case Character: $'
+ MSG2 DB 'The Lowercase Character is: $'  
+ 
+ .code 
+ 
+ main proc
+    mov ax,@data    ; get data segment
+    mov ds,ax       ;initialize data segment
+    
+    lea dx,msg1     ;get first message
+    mov ah,9        ;display string function
+    int 21h
+    
+    mov ah,1        ;input function
+    int 21h
+    add al,20h      ;convert to lowercase
+    mov bl,al       ;store the converted value
+    
+    mov ah,2
+    mov dl,0dh      ;Carriage return
+    int 21h
+    mov dl,0ah      ;New line
+    int 21h  
+    
+    lea dx,msg2     ;get second message
+    mov ah,9
+    int 21h
+     
+    mov ah,2        ;single-character output function
+    mov dl,bl       ;retrieve character and display it
+    int 21h
+    
+    mov ah,4ch      ; dos exit function
+    int 21h         ;exit to dos
+    main endp
+ endp main
