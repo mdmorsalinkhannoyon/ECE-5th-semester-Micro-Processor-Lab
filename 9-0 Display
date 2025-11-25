@@ -1,0 +1,24 @@
+.model small
+.stack 100h  
+.data
+x db 0d,1d,2d,3d,4d,5d,6d,7d,8d,9d
+.code
+main proc  
+    mov ax,@data ;get data segment
+    mov ds,ax    ;initialize DS
+    lea bx,x     ;get the array of data
+    add bx,10d
+    mov cx,10d   ;initialize the counter
+    
+    mov ah,2h
+    d_loop:
+    mov dl,[bx]
+    add dl,30h
+    int 21h
+    dec bx
+    loop d_loop
+    
+    mov ah,4ch
+    int 21h
+    main endp
+endp main
