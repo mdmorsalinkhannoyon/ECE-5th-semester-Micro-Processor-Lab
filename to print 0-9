@@ -23,9 +23,6 @@ NEWLINE DB 10,13,'$'
  MOV AH,4CH
 
 
-
-
-
  MOV AX, @DATA   
     MOV DS, AX
     LEA DX, MSG1
@@ -34,4 +31,5 @@ NEWLINE DB 10,13,'$'
      LEA DX, MSG2
     MOV AH, 09H
     INT 21H
+ MAIN ENDP
 ENDP MAIN
