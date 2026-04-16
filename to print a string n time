@@ -1,0 +1,50 @@
+  .MODEL SMALL
+.STACK 100H
+.DATA   
+
+ MSG DB 'HOW MANY TIMES WOULD U LIKE TO PRINT: $'
+MSG1 DB 10,13,'HELLO!$'                
+                   
+
+MSG4 DB 10,13,10,13,'MD. MORSALIN KHAN NOYON$'
+MSG5 DB 10,13,'ROLL: 2208$'
+NEWLINE DB 10,13,'$'
+
+
+.CODE
+ MAIN PROC 
+     
+ MOV AX,@DATA
+ MOV DS,AX
+ LEA DX,MSG
+ MOV AH,9
+ INT 21H
+ MOV AH,01
+ INT 21H
+ MOV BL,AL
+ MOV AH,0
+ AAA
+ MOV CX,AX
+ LEA DX,MSG1
+ TOP:
+ MOV AH,9
+ INT 21H
+ LOOP TOP
+
+
+          MOV AX, @DATA   
+    MOV DS, AX
+    LEA DX, MSG4
+    MOV AH, 09H
+    INT 21H  
+     LEA DX, MSG5
+    MOV AH, 09H
+    INT 21H 
+    
+ 
+  MOV AH,4CH
+ INT 21H
+    
+    
+     MAIN ENDP
+ENDP MAIN
